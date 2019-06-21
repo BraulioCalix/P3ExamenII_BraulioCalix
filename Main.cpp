@@ -114,39 +114,48 @@ int main(){
                 init_pair(4,COLOR_BLUE,COLOR_RED);//letra c
                 init_pair(5,COLOR_BLUE,COLOR_WHITE);//letra l
                 bkgd(COLOR_PAIR(1));
+                string hols="";
                 for (int i = 0; i < militares.size(); i++){
                     if (militares[i]->getRango()=="General"){
-                        printw("%s%s%s    *",militares[i]->getRango(),'-',militares[i]->getNombre());
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Coronel"){
-                        printw("%s%s%s        *",militares[i]->getRango(),"-",militares[i]->getNombre());
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Mayor"){
-                        printw("%s%s%s            *",militares[i]->getRango(),"-",militares[i]->getNombre());
-                    refresh();
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
+                        refresh();
                     }
                     if (militares[i]->getRango()=="Capitan"){
-                        printw("%s%s%s            *",militares[i]->getRango(),"-",militares[i]->getNombre());
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
                         refresh();
                         }
                     if (militares[i]->getRango()=="Teniente"){
-                        printw("%s%s%s                *",militares[i]->getRango(),"-",militares[i]->getNombre());
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Sargento"){
-                        printw("%s%s%s                    *",militares[i]->getRango(),"-",militares[i]->getNombre());
-                    refresh();
+                       hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
+                        refresh();
                     }
                     if (militares[i]->getRango()=="Cabo"){
-                        printw("%s%s%s                        *",militares[i]->getRango(),"-",militares[i]->getNombre());
-                    refresh();
+                       hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
+                        refresh();
                     }
                     
                     if (militares[i]->getRango()=="Soldado"){
-                        printw("%s%s%s                            *",militares[i]->getRango(),"-",militares[i]->getNombre());
-                    refresh();
+                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        printw(hols.c_str());
+                        refresh();
                     }
                 }
                 
