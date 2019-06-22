@@ -12,6 +12,7 @@ int main(){
     //NodoArbol* raiz= new NodoArbol(new Militar("Yagabarish  Skrobernov","M_17","72","general"));
     vector<Militar*> militares;
     bool programa=true; //bool que maneja todo el programa
+    militares.push_back(new Militar("Yagabarish  Skrobernov","M_17","72","General"));
     while (programa==true){
         cout << "ingrese que desea hacer:"<< endl 
         <<"1) crear ejercito"<< endl 
@@ -19,7 +20,7 @@ int main(){
         <<"3) salir"<< endl;
         int menu=0;
         cin>> menu;
-        militares.push_back(new Militar("Yagabarish  Skrobernov","M_17","72","General"));
+        
         switch (menu){
         case 1:{
             cout << "ingreso crear ejercito"<< endl;
@@ -39,31 +40,61 @@ int main(){
             cin >> edad;
             if(opCrear==1){// coronel
                 rango="Coronel";
-                
                 crear=true;
             }else if(opCrear==2){// mayor
                 rango ="Mayor";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Coronel"){
+                        crear=true;
+                    }
+                    /* code */
+                
+                }
             }else if (opCrear==3){// capitan
                 rango="Capitan";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Mayor"){
+                        crear=true;
+                    }
+                    /* code */
+                
+                }
             }else if(opCrear==4){//teniente
                 rango="Teniente";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Capitan"){
+                        crear=true;
+                    }
+                    
+                
+                }
             }else if(opCrear==5){//sargento
                 rango="Sargento";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Teniente"){
+                        crear=true;
+                    }
+                }
             }else if(opCrear==6){// cabo
                 rango="Cabo";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Sargento"){
+                        crear=true;
+                    }
+                }
             }else if(opCrear==7){// soldado
                 rango="Soldado";
-                crear=true;
+                for (int i = 0; i < militares.size(); i++){
+                    if(militares[i]->getRango()=="Cabo"){
+                        crear=true;
+                    }
+                }
             }
             if (crear==true){
                 militares.push_back(new Militar(nombre,codigo,edad,rango));
             }else{
-                cout<< "no ingreso un valor valido para el rango"<< endl;
+                cout<< "no ingreso un valor valido para el rango o no se puede generar el militar\n porque no hay alguien de rango superior"<< endl;
+
             }
             
         }break;
@@ -75,7 +106,8 @@ int main(){
             string archivo="";
             archivo=nombre;
             archivo+=".txt";
-	        outFile.open(archivo,std::ios::app);for (int i = 0; i < militares.size(); i++){
+	        outFile.open(archivo,std::ios::app);
+            for (int i = 0; i < militares.size(); i++){
                     if (militares[i]->getRango()=="General"){
                             outFile<<"* "<<militares[i]->getRango()<<"-"<<militares[i]->getNombre()<<endl;
                     }
@@ -106,6 +138,7 @@ int main(){
             outFile.close(); 
             initscr();
             bool sigue=false; 
+            string hols="";
             if (has_colors()){
                 start_color();
                 init_pair(1,COLOR_GREEN,COLOR_WHITE);//original
@@ -114,46 +147,78 @@ int main(){
                 init_pair(4,COLOR_BLUE,COLOR_RED);//letra c
                 init_pair(5,COLOR_BLUE,COLOR_WHITE);//letra l
                 bkgd(COLOR_PAIR(1));
-                string hols="";
+                
                 for (int i = 0; i < militares.size(); i++){
                     if (militares[i]->getRango()=="General"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="*";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Coronel"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="  *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Mayor"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="      *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Capitan"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="          *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                         }
                     if (militares[i]->getRango()=="Teniente"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="              *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Sargento"){
-                       hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                       hols="                   *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                        hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     if (militares[i]->getRango()=="Cabo"){
-                       hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                       hols="                       *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                       hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
                     
                     if (militares[i]->getRango()=="Soldado"){
-                        hols="    *",militares[i]->getRango(),'-',militares[i]->getNombre();
+                        hols="                          *";
+                       hols+=militares[i]->getRango();
+                       hols+='-';
+                       hols+=militares[i]->getNombre();
+                       hols+="\n";
                         printw(hols.c_str());
                         refresh();
                     }
@@ -179,11 +244,13 @@ int main(){
                         refresh();
                     }if(letra=='x'){
                         refresh();
+                        clear();
                         endwin();
                         sigue=true;
                     }
                 }// fin while
             }//fin if colors
+            cout<< hols<< endl;
             
         }break;       
             case 3:{
